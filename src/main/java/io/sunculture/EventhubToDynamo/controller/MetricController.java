@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+//@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class MetricController {
 
@@ -23,6 +23,12 @@ public class MetricController {
     public ResponseEntity<String> processEvent(@RequestBody List<Metric> event) {
         return new ResponseEntity<>(metricService.processEvent(event), HttpStatus.OK);
     }
+
+    @PostMapping(path = "/error", produces = "application/json")
+    public String someMsg() {
+        return "Default error msg";
+    }
+
 
 
 }

@@ -1,6 +1,35 @@
 # AWS properties
 aws:
-  access-key: <YOUR ACCESS KEY>
-  secret-key: <SECRET ACCESS KEY>
+  access-key: AKIAQHTP7XTDN5BCAQKR
+  secret-key: 6n2EZglhEgSwtHJjKrocV5up15OG5GAKZdujQkHk
   region: us-east-2
   endpoint: dynamodb.us-east-2.amazonaws.com
+
+# Azure event hub properties
+spring:
+  cloud:
+    azure:
+      eventhubs:
+        processor:
+          checkpoint-store:
+            account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
+            container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+        namespace: ${AZURE_EVENTHUBS_NAMESPACE}
+    stream:
+      poller:
+        fixed-delay: '1000'
+        initial-delay: '0'
+      bindings:
+        consume-in-0:
+          group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
+          destination: ${AZURE_EVENTHUB_NAME}
+        supply-out-0:
+          destination: ${AZURE_EVENTHUB_NAME}
+      eventhubs:
+        bindings:
+          consume-in-0:
+            consumer:
+              checkpoint:
+                mode: MANUAL
+    function:
+      definition: consume;supply;

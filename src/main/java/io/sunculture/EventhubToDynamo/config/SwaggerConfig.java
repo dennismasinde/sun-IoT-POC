@@ -8,16 +8,16 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @OpenAPIDefinition(
         info = @Info(
-                title = " API One To  Many",
+                title = "SunCulture IoT POC",
                 version = "1.0.0",
                 description = """
-                        Endpoints documentation.\n
+                        Endpoints documentation. \n
                         A list of all available endpoints
                         """
         ),
         servers= {
                 @Server(
-                        url="http://localhost:8085"
+                        url="http://localhost:8080"
                 )
         }
 )
